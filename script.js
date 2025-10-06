@@ -150,7 +150,7 @@ function updateQuestionContent(question) {
     
     const progressText = document.getElementById('questionProgressText');
     if (progressText) {
-        progressText.textContent = `${currentQuestionIndex + 1}/8 Completed Answers`;
+        progressText.textContent = `${currentQuestionIndex}/8 Completed Answers`;
     }
     
     const answerButtonsContainer = document.getElementById('answerButtons');
@@ -175,7 +175,14 @@ function selectAnswer(button) {
         if (currentQuestionIndex < questions.length - 1) {
             loadQuestion(currentQuestionIndex + 1, true);
         } else {
-            showVerifyingScreen();
+            const progressText = document.getElementById('questionProgressText');
+            if (progressText) {
+                progressText.textContent = '8/8 Completed Answers';
+            }
+            
+            setTimeout(() => {
+                showVerifyingScreen();
+            }, 500);
         }
     }, 500);
 }
