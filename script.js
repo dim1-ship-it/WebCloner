@@ -87,6 +87,18 @@ countdownDate.setHours(countdownDate.getHours() + 4);
 countdownDate.setMinutes(countdownDate.getMinutes() + 21);
 countdownDate.setSeconds(countdownDate.getSeconds() + 24);
 
+function updateBannerDate() {
+    const today = new Date();
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+    const dateString = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
+    
+    const banner = document.getElementById('dateBanner');
+    if (banner) {
+        banner.textContent = `Online Loyalty Program Only - ${dateString}`;
+    }
+}
+
 function updateTimer() {
     const now = new Date().getTime();
     const distance = countdownDate - now;
@@ -99,10 +111,7 @@ function updateTimer() {
     const timerText = `${days}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
     
     const timerElement = document.getElementById('timer');
-    const questionTimerElement = document.getElementById('questionTimer');
-    
     if (timerElement) timerElement.textContent = timerText;
-    if (questionTimerElement) questionTimerElement.textContent = timerText;
     
     if (distance > 0) {
         setTimeout(updateTimer, 1000);
@@ -114,15 +123,30 @@ function startSurvey() {
     loadQuestion(0);
 }
 
-function loadQuestion(index) {
+function loadQuestion(index, withAnimation = false) {
     currentQuestionIndex = index;
     const question = questions[index];
+    const questionContent = document.querySelector('#questionScreen .question-content');
     
+    if (withAnimation) {
+        questionContent.classList.add('fade-out');
+        
+        setTimeout(() => {
+            updateQuestionContent(question);
+            questionContent.classList.remove('fade-out');
+            questionContent.classList.add('fade-in');
+            
+            setTimeout(() => {
+                questionContent.classList.remove('fade-in');
+            }, 300);
+        }, 300);
+    } else {
+        updateQuestionContent(question);
+    }
+}
+
+function updateQuestionContent(question) {
     document.getElementById('questionTitle').textContent = question.question;
-    document.getElementById('currentQuestion').textContent = index + 1;
-    
-    const prizesRemaining = 334 - (index * 5);
-    document.getElementById('prizesRemaining').textContent = prizesRemaining;
     
     const answerButtonsContainer = document.getElementById('answerButtons');
     answerButtonsContainer.innerHTML = '';
@@ -131,12 +155,12 @@ function loadQuestion(index) {
         const button = document.createElement('button');
         button.className = 'answer-button';
         button.textContent = answer;
-        button.onclick = () => selectAnswer(button, index);
+        button.onclick = () => selectAnswer(button);
         answerButtonsContainer.appendChild(button);
     });
 }
 
-function selectAnswer(button, questionIndex) {
+function selectAnswer(button) {
     const buttons = document.querySelectorAll('.answer-button');
     buttons.forEach(btn => btn.style.pointerEvents = 'none');
     
@@ -144,8 +168,7 @@ function selectAnswer(button, questionIndex) {
     
     setTimeout(() => {
         if (currentQuestionIndex < questions.length - 1) {
-            loadQuestion(currentQuestionIndex + 1);
-            buttons.forEach(btn => btn.style.pointerEvents = 'auto');
+            loadQuestion(currentQuestionIndex + 1, true);
         } else {
             showVerifyingScreen();
         }
@@ -264,4 +287,5 @@ function startConfetti() {
     animate();
 }
 
+updateBannerDate();
 updateTimer();

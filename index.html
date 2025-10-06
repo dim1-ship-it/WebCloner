@@ -13,7 +13,10 @@
             <div class="burger-line"></div>
             <div class="burger-line"></div>
         </div>
-        <div class="logo">HARBOR FREIGHT</div>
+        <div class="logo-container">
+            <div class="logo">HARBOR FREIGHT</div>
+            <div class="logo-underline"></div>
+        </div>
         <div class="cart-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="9" cy="20" r="1.5" fill="currentColor"/>
@@ -24,8 +27,8 @@
         </div>
     </div>
 
-    <div class="banner">
-        Online Loyalty Program Only - 12 мая 2025 г.
+    <div class="banner" id="dateBanner">
+        Online Loyalty Program Only - October 6, 2025
     </div>
 
     <div class="container">
@@ -38,11 +41,17 @@
             <div class="loffertitle-text">Loffertitle</div>
 
             <div class="product-showcase">
-                <img src="images/icon-toolset.png" alt="ICON Core Master Set" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <img src="images/icon-toolset.png" alt="ICON Core Master Set" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <div class="product-placeholder">
-                    <div class="icon-logo">ICON</div>
-                    <div class="product-title">CORE MASTER SET</div>
-                    <div class="product-subtitle">Wrenches & Breaker Bars</div>
+                    <div class="placeholder-image-box">
+                        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" fill="#f0f0f0"/>
+                            <path d="M35 50 L50 35 L65 50 M50 35 L50 65" stroke="#C84444" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="50" cy="50" r="35" stroke="#C84444" stroke-width="2" fill="none"/>
+                        </svg>
+                        <div class="placeholder-text">ICON TOOLSET</div>
+                        <div class="placeholder-subtext">Replace with actual image</div>
+                    </div>
                 </div>
             </div>
 
@@ -76,14 +85,6 @@
         </div>
 
         <div id="questionScreen" class="screen">
-            <div class="progress-info">
-                <div class="progress-text">
-                    <span id="currentQuestion">1</span>/8 Completed Answers
-                </div>
-                <div class="prizes-info">500 / <span id="prizesRemaining">334</span> Prizes Left</div>
-                <div class="timer-info" id="questionTimer">0d 04h 20m 43s</div>
-            </div>
-
             <div class="question-content">
                 <h2 id="questionTitle">How did you hear about this promotion for Loffertitle?</h2>
                 <div id="answerButtons" class="answer-buttons">
@@ -121,7 +122,13 @@
         <div class="modal-content">
             <div class="modal-product">
                 <img src="images/icon-toolset-small.png" alt="Prize" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <div class="product-placeholder-small">ICON SET</div>
+                <div class="product-placeholder-small">
+                    <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100" height="100" fill="#f0f0f0"/>
+                        <path d="M35 50 L50 35 L65 50 M50 35 L50 65" stroke="#C84444" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="50" cy="50" r="35" stroke="#C84444" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
             </div>
             
             <h2>Congratulations, you are a winner!</h2>
