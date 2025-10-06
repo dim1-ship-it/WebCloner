@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harbor Freight - Online Loyalty Program</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="menu-icon">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+        </div>
+        <div class="logo">HARBOR FREIGHT</div>
+        <div class="cart-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="9" cy="20" r="1.5" fill="currentColor"/>
+                <circle cx="18" cy="20" r="1.5" fill="currentColor"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="cart-badge">0</span>
+        </div>
+    </div>
+
+    <div class="banner">
+        Online Loyalty Program Only - 12 мая 2025 г.
+    </div>
+
+    <div class="container">
+        <div id="welcomeScreen" class="screen active">
+            <div class="answer-win-header">
+                <span class="answer-text">Answer</span>
+                <span class="and-text">&</span>
+                <span class="win-text">Win!</span>
+            </div>
+            <div class="loffertitle-text">Loffertitle</div>
+
+            <div class="product-showcase">
+                <img src="images/icon-toolset.png" alt="ICON Core Master Set" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="product-placeholder">
+                    <div class="icon-logo">ICON</div>
+                    <div class="product-title">CORE MASTER SET</div>
+                    <div class="product-subtitle">Wrenches & Breaker Bars</div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-value">8/0</div>
+                    <div class="stat-label">Completed Answers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value prizes-left">500 / 371</div>
+                    <div class="stat-label">Prizes Left</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="timer">0d 04h 21m 24s</div>
+                    <div class="stat-label">Time Remaining</div>
+                </div>
+            </div>
+
+            <div class="intro-text">
+                You have been selected to participate in our <strong>Loyalty Program</strong> for FREE!<br>
+                Now you have a unique opportunity to win a <strong>Loffertitle</strong>. It will only take you a minute to claim this fantastic prize.
+            </div>
+
+            <button class="cta-button" onclick="startSurvey()">Take the Survey Now</button>
+
+            <div class="disclaimer">
+                *This survey aims to improve service for our users. We randomly select 10 users to give them the opportunity to win fabulous prizes.
+            </div>
+
+            <div class="footer-logo">®</div>
+        </div>
+
+        <div id="questionScreen" class="screen">
+            <div class="progress-info">
+                <div class="progress-text">
+                    <span id="currentQuestion">1</span>/8 Completed Answers
+                </div>
+                <div class="prizes-info">500 / <span id="prizesRemaining">334</span> Prizes Left</div>
+                <div class="timer-info" id="questionTimer">0d 04h 20m 43s</div>
+            </div>
+
+            <div class="question-content">
+                <h2 id="questionTitle">How did you hear about this promotion for Loffertitle?</h2>
+                <div id="answerButtons" class="answer-buttons">
+                    <button class="answer-button" onclick="selectAnswer(this, 0)">Social media</button>
+                    <button class="answer-button" onclick="selectAnswer(this, 0)">In-store advertisement</button>
+                    <button class="answer-button" onclick="selectAnswer(this, 0)">Friend or family recommendation</button>
+                    <button class="answer-button" onclick="selectAnswer(this, 0)">Internet search</button>
+                    <button class="answer-button" onclick="selectAnswer(this, 0)">Other source</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="verifyingScreen" class="screen">
+            <h2>We are verifying your answers...</h2>
+            <div class="spinner"></div>
+        </div>
+
+        <div id="validationScreen" class="screen">
+            <div class="validation-item" id="validation1">
+                <div class="checkmark">✓</div>
+                <div class="validation-text">You answered 8/8 questions.</div>
+            </div>
+            <div class="validation-item" id="validation2">
+                <div class="checkmark">✓</div>
+                <div class="validation-text">There were no previous responses from your IP address.</div>
+            </div>
+            <div class="validation-item" id="validation3">
+                <div class="checkmark">✓</div>
+                <div class="validation-text">There are still prizes available!</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="winnerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-product">
+                <img src="images/icon-toolset-small.png" alt="Prize" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="product-placeholder-small">ICON SET</div>
+            </div>
+            
+            <h2>Congratulations, you are a winner!</h2>
+            
+            <ol class="winner-instructions">
+                <li>You must complete the form and confirm your participation.</li>
+                <li>Your special prize of <strong>pricenew</strong> will be available for the next <strong>1 minute 56 seconds</strong>.</li>
+                <li>Loffertitle will be shipped to the winner within 4-7 days.</li>
+            </ol>
+            
+            <button class="ok-button" onclick="redirectToGoogle()">OK</button>
+            
+            <div class="payment-disclaimer">
+                We can not use Matercard and Maestro to identify verification
+            </div>
+            
+            <div class="payment-icons">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect fill='%231434CB' width='48' height='32' rx='4'/%3E%3Ctext x='24' y='20' fill='white' font-size='12' font-weight='bold' text-anchor='middle'%3EVISA%3C/text%3E%3C/svg%3E" alt="Visa">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect fill='%23EB001B' width='24' height='32' rx='4'/%3E%3Crect fill='%23FF5F00' x='12' width='24' height='32'/%3E%3Crect fill='%23F79E1B' x='24' width='24' height='32' rx='4'/%3E%3C/svg%3E" alt="Mastercard">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect fill='%230066B2' width='48' height='32' rx='4'/%3E%3Ctext x='24' y='20' fill='white' font-size='10' font-weight='bold' text-anchor='middle'%3EMAESTRO%3C/text%3E%3C/svg%3E" alt="Maestro">
+            </div>
+        </div>
+    </div>
+
+    <canvas id="confetti"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>

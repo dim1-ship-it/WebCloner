@@ -1,0 +1,503 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.menu-icon {
+    width: 24px;
+    cursor: pointer;
+}
+
+.burger-line {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+}
+
+.logo {
+    font-size: 16px;
+    font-weight: bold;
+    color: #C84444;
+    letter-spacing: 0.5px;
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    color: #333;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #C84444;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.banner {
+    background-color: #C84444;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 13px;
+}
+
+.container {
+    padding: 20px;
+    background-color: white;
+    min-height: calc(100vh - 120px);
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.answer-win-header {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.answer-text {
+    background-color: #1E3A8A;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+
+.and-text {
+    margin: 0 8px;
+    color: #333;
+}
+
+.win-text {
+    background-color: #C84444;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+
+.loffertitle-text {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.product-showcase {
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px 0;
+    position: relative;
+}
+
+.product-showcase img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.product-placeholder {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    border-radius: 8px;
+}
+
+.icon-logo {
+    font-size: 48px;
+    font-weight: bold;
+    color: #C84444;
+    margin-bottom: 10px;
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.product-subtitle {
+    font-size: 14px;
+    color: #666;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    padding: 15px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.prizes-left {
+    color: #C84444;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #666;
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 20px 0;
+    color: #555;
+}
+
+.cta-button {
+    width: 100%;
+    background-color: #C84444;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #b03a3a;
+}
+
+.cta-button:active {
+    transform: scale(0.98);
+}
+
+.disclaimer {
+    text-align: center;
+    font-size: 11px;
+    color: #999;
+    margin: 20px 0;
+}
+
+.footer-logo {
+    text-align: center;
+    font-size: 20px;
+    color: #999;
+    margin-top: 20px;
+}
+
+.progress-info {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.progress-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.prizes-info, .timer-info {
+    font-size: 13px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.question-content {
+    margin-top: 30px;
+}
+
+.question-content h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.answer-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.answer-button {
+    background-color: #C84444;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.answer-button:hover {
+    background-color: #b03a3a;
+    transform: translateX(5px);
+}
+
+.answer-button:active {
+    transform: scale(0.98);
+}
+
+#verifyingScreen {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+#verifyingScreen h2 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #333;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#validationScreen {
+    padding: 40px 20px;
+}
+
+.validation-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.validation-item.show {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.checkmark {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+.validation-text {
+    font-size: 16px;
+    color: #333;
+    padding-top: 12px;
+    line-height: 1.4;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px 25px;
+    border-radius: 8px;
+    max-width: 90%;
+    width: 400px;
+    position: relative;
+    text-align: center;
+}
+
+.modal-product {
+    margin-bottom: 20px;
+}
+
+.modal-product img {
+    width: 120px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.product-placeholder-small {
+    display: none;
+    width: 120px;
+    height: 80px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    margin: 0 auto;
+    border-radius: 4px;
+    line-height: 80px;
+    font-weight: bold;
+    color: #C84444;
+}
+
+.modal-content h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.winner-instructions {
+    text-align: left;
+    margin: 20px 0;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #555;
+}
+
+.winner-instructions li {
+    margin-bottom: 10px;
+}
+
+.ok-button {
+    background-color: #C84444;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: background-color 0.3s;
+}
+
+.ok-button:hover {
+    background-color: #b03a3a;
+}
+
+.payment-disclaimer {
+    font-size: 11px;
+    color: #999;
+    margin: 15px 0 10px;
+}
+
+.payment-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.payment-icons img {
+    height: 24px;
+    width: auto;
+}
+
+#confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+@media (max-width: 380px) {
+    .answer-win-header {
+        font-size: 28px;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .question-content h2 {
+        font-size: 16px;
+    }
+}
