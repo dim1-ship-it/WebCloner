@@ -338,3 +338,151 @@ function showWinnerNotification() {
 }
 
 setTimeout(showWinnerNotification, 10000);
+
+function sanitizeInput(input) {
+    if (!input) return '';
+    const div = document.createElement('div');
+    div.textContent = input;
+    return div.innerHTML;
+}
+
+function getURLParameters() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        firstName: sanitizeInput(params.get('sub9') || ''),
+        lastName: sanitizeInput(params.get('sub10') || ''),
+        email: sanitizeInput(params.get('sub11') || ''),
+        phone: sanitizeInput(params.get('sub12') || ''),
+        address: sanitizeInput(params.get('sub13') || ''),
+        zip: sanitizeInput(params.get('sub14') || ''),
+        city: sanitizeInput(params.get('sub15') || ''),
+        productTitle: sanitizeInput(params.get('sub6') || 'Loffertitle'),
+        fbPixel: sanitizeInput(params.get('sub4') || '')
+    };
+}
+
+function showPrefillScreen() {
+    document.getElementById('winnerModal').style.display = 'none';
+    showScreen('prefillScreen');
+    
+    const urlParams = getURLParameters();
+    
+    document.getElementById('prefillFirstName').value = urlParams.firstName;
+    document.getElementById('prefillLastName').value = urlParams.lastName;
+    document.getElementById('prefillEmail').value = urlParams.email;
+    document.getElementById('prefillPhone').value = urlParams.phone;
+    document.getElementById('prefillAddress').value = urlParams.address;
+    document.getElementById('prefillZip').value = urlParams.zip;
+    document.getElementById('prefillCity').value = urlParams.city;
+    
+    const productTitleElement = document.getElementById('prefillProductTitle');
+    if (productTitleElement && urlParams.productTitle) {
+        productTitleElement.textContent = urlParams.productTitle;
+    }
+    
+    startCartTimer();
+}
+
+let cartTimerSeconds = 207;
+
+function startCartTimer() {
+    const timerElement = document.getElementById('cartTimer');
+    
+    function updateCartTimer() {
+        if (cartTimerSeconds <= 0) {
+            timerElement.textContent = '0:00';
+            return;
+        }
+        
+        const minutes = Math.floor(cartTimerSeconds / 60);
+        const seconds = cartTimerSeconds % 60;
+        timerElement.textContent = `${minutes}:${String(seconds).padStart(2, '0')}`;
+        
+        cartTimerSeconds--;
+        setTimeout(updateCartTimer, 1000);
+    }
+    
+    updateCartTimer();
+}
+
+function toggleOrderSummary() {
+    const content = document.getElementById('orderSummaryContent');
+    const arrow = document.getElementById('orderSummaryArrow');
+    const toggleText = document.querySelector('.toggle-left span');
+    
+    if (content.classList.contains('collapsed')) {
+        content.classList.remove('collapsed');
+        arrow.classList.remove('collapsed');
+        toggleText.textContent = 'Hide order summary';
+    } else {
+        content.classList.add('collapsed');
+        arrow.classList.add('collapsed');
+        toggleText.textContent = 'Show order summary';
+    }
+}
+
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function validatePhone(phone) {
+    const digits = phone.replace(/\D/g, '');
+    return digits.length >= 10;
+}
+
+document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = {
+        email: document.getElementById('prefillEmail').value.trim(),
+        firstName: document.getElementById('prefillFirstName').value.trim(),
+        lastName: document.getElementById('prefillLastName').value.trim(),
+        address: document.getElementById('prefillAddress').value.trim(),
+        zip: document.getElementById('prefillZip').value.trim(),
+        state: document.getElementById('prefillState').value,
+        city: document.getElementById('prefillCity').value.trim(),
+        phone: document.getElementById('prefillPhone').value.trim()
+    };
+    
+    if (!validateEmail(formData.email)) {
+        alert('Please enter a valid email address');
+        return;
+    }
+    
+    if (!validatePhone(formData.phone)) {
+        alert('Please enter a valid phone number');
+        return;
+    }
+    
+    if (!formData.firstName || !formData.lastName || !formData.address || 
+        !formData.zip || !formData.state || !formData.city) {
+        alert('Please fill in all required fields');
+        return;
+    }
+    
+    const urlParams = getURLParameters();
+    
+    const offerParams = new URLSearchParams({
+        sub9: formData.firstName,
+        sub10: formData.lastName,
+        sub11: formData.email,
+        sub12: formData.phone,
+        sub13: formData.address,
+        sub14: formData.zip,
+        sub15: formData.city,
+        sub6: urlParams.productTitle,
+        sub4: urlParams.fbPixel
+    });
+    
+    const currentParams = new URLSearchParams(window.location.search);
+    currentParams.forEach((value, key) => {
+        if (!offerParams.has(key)) {
+            offerParams.append(key, value);
+        }
+    });
+    
+    const offerUrl = window.location.origin + '/offer?' + offerParams.toString();
+    
+    window.location.href = offerUrl;
+});
