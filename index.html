@@ -85,6 +85,9 @@
         </div>
 
         <div id="questionScreen" class="screen">
+            <div class="question-progress">
+                <span id="questionProgressText">1/8 Completed Answers</span>
+            </div>
             <div class="question-content">
                 <h2 id="questionTitle">How did you hear about this promotion for Loffertitle?</h2>
                 <div id="answerButtons" class="answer-buttons">
@@ -135,7 +138,7 @@
             
             <ol class="winner-instructions">
                 <li>You must complete the form and confirm your participation.</li>
-                <li>Your special prize of <strong>pricenew</strong> will be available for the next <strong>1 minute 56 seconds</strong>.</li>
+                <li>Your special prize of <strong>pricenew</strong> will be available for the next <strong><span id="prizeTimer">1 minute 56 seconds</span></strong>.</li>
                 <li>Loffertitle will be shipped to the winner within 4-7 days.</li>
             </ol>
             
@@ -146,14 +149,31 @@
             </div>
             
             <div class="payment-icons">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect fill='%231434CB' width='48' height='32' rx='4'/%3E%3Ctext x='24' y='20' fill='white' font-size='12' font-weight='bold' text-anchor='middle'%3EVISA%3C/text%3E%3C/svg%3E" alt="Visa">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect fill='%23EB001B' width='24' height='32' rx='4'/%3E%3Crect fill='%23FF5F00' x='12' width='24' height='32'/%3E%3Crect fill='%23F79E1B' x='24' width='24' height='32' rx='4'/%3E%3C/svg%3E" alt="Mastercard">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect fill='%230066B2' width='48' height='32' rx='4'/%3E%3Ctext x='24' y='20' fill='white' font-size='10' font-weight='bold' text-anchor='middle'%3EMAESTRO%3C/text%3E%3C/svg%3E" alt="Maestro">
+                <img src="images/visa.jpg" alt="Visa">
+                <img src="images/mastercard.jpg" alt="Mastercard">
+                <img src="images/maestro.jpg" alt="Maestro">
             </div>
         </div>
     </div>
 
     <canvas id="confetti"></canvas>
+
+    <div id="winnerNotification" class="winner-notification">
+        <div class="notification-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="8" width="30" height="24" rx="2" fill="#444" stroke="#222" stroke-width="2"/>
+                <rect x="10" y="14" width="8" height="12" fill="#666"/>
+                <rect x="22" y="14" width="8" height="12" fill="#666"/>
+                <circle cx="14" cy="20" r="2" fill="#C84444"/>
+                <circle cx="26" cy="20" r="2" fill="#C84444"/>
+            </svg>
+        </div>
+        <div class="notification-content">
+            <div class="notification-name">James from <strong>Savannah</strong></div>
+            <div class="notification-prize">Won Blackstone 36 Griddle</div>
+            <div class="notification-time">25 seconds ago</div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

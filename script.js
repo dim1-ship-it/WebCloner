@@ -148,6 +148,11 @@ function loadQuestion(index, withAnimation = false) {
 function updateQuestionContent(question) {
     document.getElementById('questionTitle').textContent = question.question;
     
+    const progressText = document.getElementById('questionProgressText');
+    if (progressText) {
+        progressText.textContent = `${currentQuestionIndex + 1}/8 Completed Answers`;
+    }
+    
     const answerButtonsContainer = document.getElementById('answerButtons');
     answerButtonsContainer.innerHTML = '';
     
@@ -203,11 +208,37 @@ function showValidationScreen() {
     }, 2500);
 }
 
+function startPrizeTimer() {
+    let timeLeft = 116;
+    
+    function updateTimer() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        const timerElement = document.getElementById('prizeTimer');
+        
+        if (timerElement) {
+            if (minutes > 0) {
+                timerElement.textContent = `${minutes} minute ${seconds} seconds`;
+            } else {
+                timerElement.textContent = `${seconds} seconds`;
+            }
+        }
+        
+        if (timeLeft > 0) {
+            timeLeft--;
+            setTimeout(updateTimer, 1000);
+        }
+    }
+    
+    updateTimer();
+}
+
 function showWinnerModal() {
     const modal = document.getElementById('winnerModal');
     modal.classList.add('active');
     
     startConfetti();
+    startPrizeTimer();
 }
 
 function redirectToGoogle() {
@@ -289,3 +320,14 @@ function startConfetti() {
 
 updateBannerDate();
 updateTimer();
+
+function showWinnerNotification() {
+    const notification = document.getElementById('winnerNotification');
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 5000);
+}
+
+setTimeout(showWinnerNotification, 10000);

@@ -290,8 +290,19 @@ body {
     margin-top: 5px;
 }
 
+.question-progress {
+    text-align: center;
+    padding: 12px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
 .question-content {
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .question-content h2 {
@@ -512,6 +523,67 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: 999;
+}
+
+.winner-notification {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: none;
+    z-index: 1000;
+    max-width: 280px;
+    animation: slideInRight 0.5s ease-out;
+}
+
+.winner-notification.show {
+    display: flex;
+    gap: 12px;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.notification-icon {
+    flex-shrink: 0;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-name {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.notification-name strong {
+    color: #2563EB;
+    font-weight: 600;
+}
+
+.notification-prize {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2563EB;
+    margin-bottom: 2px;
+}
+
+.notification-time {
+    font-size: 11px;
+    color: #999;
 }
 
 @media (max-width: 380px) {
