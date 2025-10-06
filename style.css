@@ -882,7 +882,7 @@ body {
 .continue-button {
     width: 100%;
     padding: 16px;
-    background: linear-gradient(135deg, #D946B4 0%, #C84497 100%);
+    background: #C84444;
     color: white;
     border: none;
     border-radius: 6px;

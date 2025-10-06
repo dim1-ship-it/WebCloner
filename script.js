@@ -363,6 +363,12 @@ function getURLParameters() {
 
 function showPrefillScreen() {
     document.getElementById('winnerModal').style.display = 'none';
+    
+    const confettiCanvas = document.getElementById('confetti');
+    if (confettiCanvas) {
+        confettiCanvas.style.display = 'none';
+    }
+    
     showScreen('prefillScreen');
     
     const urlParams = getURLParameters();
@@ -428,7 +434,7 @@ function validateEmail(email) {
 
 function validatePhone(phone) {
     const digits = phone.replace(/\D/g, '');
-    return digits.length >= 10;
+    return digits.length >= 5;
 }
 
 document.getElementById('checkoutForm').addEventListener('submit', function(e) {
